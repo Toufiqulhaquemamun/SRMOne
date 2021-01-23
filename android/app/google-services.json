@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "436045971199",
+    "project_id": "college-app-77193",
+    "storage_bucket": "college-app-77193.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436045971199:android:76d4b519a1a3d87cfc16ca",
+        "android_client_info": {
+          "package_name": "com.avstudios.college_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436045971199-hfepbqk0s55126akjbubjr87v52pog0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4qp2G4PghrLs9CM-xvBpw-peVvz5DtVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436045971199-hfepbqk0s55126akjbubjr87v52pog0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
