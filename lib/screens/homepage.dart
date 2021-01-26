@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 
@@ -32,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   //   }
   // }
 
-  Future<firebase_storage.UploadTask> uploadFile(PickedFile file) async {
+  Future<firebase_storage.UploadTask> uploadFile(File file) async {
     print("File in function!");
     if (file == null) {
       Scaffold.of(context)
@@ -52,10 +55,10 @@ class _HomePageState extends State<HomePage> {
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref()
         .child('playground')
-        .child('/some-image.jpg');
+        .child('/some-image.pdf');
 
     final metadata = firebase_storage.SettableMetadata(
-        contentType: 'image/jpeg',
+        contentType: 'file/pdf',
         customMetadata: {'picked-file-path': file.path});
     print("Uploading..!");
 
@@ -81,9 +84,11 @@ class _HomePageState extends State<HomePage> {
         ),
         onPressed: () async {
           print("Looking for file!");
-          PickedFile file =
-              await ImagePicker().getImage(source: ImageSource.gallery);
-          print("We have the file!");
+          final path = await FlutterDocumentPicker.openDocument();
+          // PickedFile file =
+          //     await ImagePicker().getImage(source: ImageSource.gallery);
+          print(path);
+          File file = File(path);
           firebase_storage.UploadTask task = await uploadFile(file);
           print("File uploaded!");
           if (task != null) {
