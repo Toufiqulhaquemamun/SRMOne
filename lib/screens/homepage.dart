@@ -1,5 +1,7 @@
+import 'package:college_app/screens/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -33,6 +35,8 @@ class _HomePageState extends State<HomePage> {
         .ref('notes/Service_Agreement-VERGE.pdf')
         .getDownloadURL();
     print(downloadURL);
+    PDFDocument doc = await PDFDocument.fromURL(downloadURL);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>NotesPage(doc)));
   }
 
   @override
@@ -49,6 +53,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CircularProgressIndicator());
+    return Center(
+      child: CircularProgressIndicator(
+      ),
+    );
   }
 }
+
+
