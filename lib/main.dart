@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'screens/addDataFirestore.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,7 @@ class App extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             title: 'College App',
-            home: HomePage(),
+            home: AddUser(),
           );
         }
         // Otherwise, show something whilst waiting for initialization to complete

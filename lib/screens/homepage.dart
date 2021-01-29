@@ -9,8 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
+  firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
 
   // firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
   //     .ref()
