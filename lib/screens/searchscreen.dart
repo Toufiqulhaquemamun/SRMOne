@@ -48,20 +48,15 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
 
       body: SafeArea(
-        child: Column(
-          children: [
-            Center(
-              child: RaisedButton(
-                child: Text(
-                  'Launch PDF',
-
-                ),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
-                },
-              ),
-            )
-          ],
+        child: Center(
+          child: RaisedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
+            },
+            child: Text(
+              'Launch PDF'
+            ),
+          ),
         ),
       ),
     );
