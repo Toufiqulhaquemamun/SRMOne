@@ -1,6 +1,6 @@
+import 'package:college_app/screens/homepage.dart';
 import 'package:college_app/screens/loginpage.dart';
 import 'package:flutter/material.dart';
-import 'screens/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,4 +34,5 @@ class App extends StatelessWidget {
     );
   }
 }
+
 

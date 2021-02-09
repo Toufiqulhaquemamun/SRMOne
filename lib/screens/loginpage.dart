@@ -1,7 +1,9 @@
-import 'package:college_app/screens/homepage.dart';
+import 'package:college_app/screens/loadingscreen.dart';
 import 'package:college_app/screens/signuppage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'homepage.dart';
 
 class LoginPage extends StatelessWidget {
   String enteredEmail;
@@ -53,7 +55,7 @@ class LoginPage extends StatelessWidget {
             onPressed: ()async {
               await loginAccount();
               print("done");
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> HomePage()));
             },
           ),
           SizedBox(height: 20,),
