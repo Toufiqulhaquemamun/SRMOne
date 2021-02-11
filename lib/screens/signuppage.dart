@@ -103,7 +103,6 @@ class SignUpPage extends StatelessWidget {
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>LoginPage()));
             },
           ),
-
         ],
       ),
     );
