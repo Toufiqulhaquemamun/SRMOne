@@ -1,3 +1,4 @@
+import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/notes.dart';
 import 'package:flutter/material.dart';
 import 'searchscreen.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                         size: 50.0,
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> NavigationScreen()));
                       },
                     ),
                   ),
