@@ -1,7 +1,8 @@
 import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/notes.dart';
+import 'package:college_app/screens/submitpdf.dart';
 import 'package:flutter/material.dart';
-import 'searchscreen.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -37,7 +38,10 @@ class _HomePageState extends State<HomePage> {
                         size: 50.0,
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> NavigationScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NavigationScreen()));
                       },
                     ),
                   ),
@@ -51,8 +55,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width * 0.90,
                   height: 120,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(20.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
                     gradient: LinearGradient(
                         colors: [Colors.yellow, Colors.orange],
                         begin: Alignment.topLeft,
@@ -98,9 +101,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20.0,
               ),
               Center(
-                child: Text(
-                  '<<  Favourites go under:  >>'
-                ),
+                child: Text('<<  Favourites go under:  >>'),
               ),
             ],
           ),

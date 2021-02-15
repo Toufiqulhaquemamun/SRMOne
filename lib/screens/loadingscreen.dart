@@ -7,6 +7,9 @@ import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 
 class LoadingScreen extends StatefulWidget {
+  String url;
+  LoadingScreen(this.url);
+  
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -36,8 +39,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
         .ref('notes/year1/basic_engg/unit1/Basic Unit 1 Part 2.pdf')
         .getDownloadURL();
-    print(downloadURL);
-    PDFDocument doc = await PDFDocument.fromURL(downloadURL);
+    print(widget.url);
+    PDFDocument doc = await PDFDocument.fromURL(widget.url);
     Navigator.push(context, MaterialPageRoute(builder: (context)=>NotesPage(doc)));
   }
 
