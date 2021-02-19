@@ -1,6 +1,7 @@
 import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/notes.dart';
 import 'package:college_app/screens/submitpdf.dart';
+import 'package:college_app/services/databasemanger.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,6 +11,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List announcementList = [];
+  bool isLoaded;
+
+  @override
+  void initState() {
+    super.initState();
+    isLoaded = false;
+    fetchDataList();
+  }
+
+  fetchDataList() async {
+    dynamic resultant = await DatabaseManager().getAnnouncementList();
+    if (resultant == null) {
+      print("Unable to retrieve");
+    } else {
+      setState(() {
+        isLoaded = true;
+        announcementList = resultant;
+        print(announcementList);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,34 +45,6 @@ class _HomePageState extends State<HomePage> {
             children: [
               SizedBox(
                 height: 40.0,
-              ),
-              /* Search Button */
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Center(
-                  child: Container(
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        border: Border.all(color: Colors.black)),
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        size: 50.0,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NavigationScreen()));
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
               ),
               Center(
                 child: Container(
@@ -100,9 +96,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20.0,
               ),
-              Center(
-                child: Text('<<  Favourites go under:  >>'),
-              ),
+              /* Search Button */
             ],
           ),
         ),

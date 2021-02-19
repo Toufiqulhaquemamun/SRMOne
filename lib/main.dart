@@ -1,3 +1,4 @@
+import 'package:college_app/screens/bottomnavigation.dart';
 import 'package:college_app/screens/homepage.dart';
 import 'package:college_app/screens/loginpage.dart';
 import 'package:college_app/screens/registerationscreen.dart';
@@ -27,12 +28,13 @@ class App extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             title: 'College App',
-            initialRoute: '/login',
-            routes: {
-              '/login': (context) => LoginScreen(),
-              '/register': (context) => RegistrationScreen(),
-              '/home': (context) => HomePage(),
-            },
+            home: BottomNavigationScreen(),
+            // initialRoute: '/login',
+            // routes: {
+            //   '/login': (context) => LoginScreen(),
+            //   '/register': (context) => RegistrationScreen(),
+            //   '/home': (context) => HomePage(),
+            // },
           );
         }
         // Otherwise, show something whilst waiting for initialization to complete

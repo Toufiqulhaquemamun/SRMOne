@@ -32,7 +32,6 @@ class AuthenticationService {
   }
 
 // signout
-
   Future signOut() async {
     try {
       return _auth.signOut();
