@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
@@ -44,29 +43,60 @@ class _SubmitScreenState extends State<SubmitScreen> {
     return Future.value(uploadTask);
   }
 
+   void _selectFile() async{
+    final path = await FlutterDocumentPicker.openDocument();
+    File file = File(path);
+    firebase_storage.UploadTask task = await uploadFile(file);
+    print("File uploaded!");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Center(
+              child: Container(
+                height: 180.0,
+                decoration: BoxDecoration(
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(20.0)),
+                    border: Border.all(color: Colors.black)),
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.add,
+                    size: 50.0,
+                  ),
+                  onPressed: _selectFile
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
         child: Icon(
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () async {
-          print("Looking for file!");
-          final path = await FlutterDocumentPicker.openDocument();
-          print(path);
-          File file = File(path);
-          firebase_storage.UploadTask task = await uploadFile(file);
-          print("File uploaded!");
-          if (task != null) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text("Uploaded")));
-          }
-        },
+        onPressed: _selectFile
       ),
     );
   }
 }
+
+class AddMoreInfo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
