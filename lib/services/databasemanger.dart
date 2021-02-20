@@ -6,10 +6,10 @@ class DatabaseManager {
       FirebaseFirestore.instance.collection('user');
 
   Future<void> createUserData(
-      String name, String gender, int rating, String uid) async {
+      String name, String email, String registrationno, String uid) async {
     return await _userData
         .doc(uid)
-        .set({'name': name, 'gender': gender, 'rating': rating});
+        .set({'name': name, 'email': email, 'regnno': registrationno});
   }
 
   Future getAnnouncementList() async {

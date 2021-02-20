@@ -47,10 +47,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: Text("Check Firebase and PDF"),
-      ),
+      backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
         child: Icon(

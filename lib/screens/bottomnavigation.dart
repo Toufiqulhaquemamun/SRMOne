@@ -1,6 +1,9 @@
+import 'package:college_app/rootwidget.dart';
 import 'package:college_app/screens/homepage.dart';
-import 'package:college_app/screens/loginpage.dart';
+import 'package:college_app/screens/contribute.dart';
 import 'package:college_app/screens/navigation.dart';
+import 'package:college_app/screens/submitpdf.dart';
+import 'package:college_app/services/usermanager.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -25,8 +28,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         'title': 'Explore',
       },
       {
-        'page': LoginScreen(),
-        'title': 'Community',
+        'page': SubmitScreen(),
+        'title': 'Contribute',
       },
     ];
     super.initState();
@@ -73,13 +76,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ],
         ),
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.search,
-          //     color: Colors.black,
-          //   ),
-          //   onPressed: () {},
-          // ),
           IconButton(
             icon: Icon(
               Icons.notifications_none,
@@ -87,6 +83,16 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             ),
             onPressed: () {
               //TODO: Setup Notifications
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              await AuthenticationService().signOut();
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => RootWidget()), (route) => false);
             },
           )
         ],

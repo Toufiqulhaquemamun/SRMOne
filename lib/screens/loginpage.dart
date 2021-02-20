@@ -1,3 +1,4 @@
+import 'package:college_app/screens/bottomnavigation.dart';
 import 'package:college_app/services/usermanager.dart';
 import 'package:college_app/screens/registerationscreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        color: Colors.deepPurple,
         child: Center(
           child: Form(
             key: _key,
@@ -71,18 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      FlatButton(
-                        child: Text('Not registerd? Sign up'),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            CupertinoPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) => RegistrationScreen(),
-                            ),
-                          );
-                        },
-                        textColor: Colors.white,
-                      ),
                       SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       _emailContoller.clear();
       _passwordController.clear();
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomNavigationScreen()), (route) => false);
     }
   }
 }

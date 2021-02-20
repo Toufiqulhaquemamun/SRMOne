@@ -1,4 +1,4 @@
-import 'package:college_app/screens/loginpage.dart';
+import 'package:college_app/screens/bottomnavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:college_app/services/usermanager.dart';
 
@@ -15,12 +15,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailContoller = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _regnnoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        color: Colors.deepPurple,
         child: Center(
           child: Form(
             key: _key,
@@ -86,6 +87,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       SizedBox(height: 30),
+                      TextFormField(
+                        controller: _regnnoController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Registration Number cannot be empty';
+                          } else
+                            return null;
+                        },
+                        decoration: InputDecoration(
+                            labelText: 'Registration Number',
+                            labelStyle: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -120,7 +135,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   void createUser() async {
     dynamic result = await _auth.createNewUser(
-        _nameController.text, _emailContoller.text, _passwordController.text);
+        _nameController.text, _emailContoller.text, _passwordController.text,  _regnnoController.text);
     if (result == null) {
       print('Email is not valid');
     } else {
@@ -128,7 +143,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       _nameController.clear();
       _passwordController.clear();
       _emailContoller.clear();
-      Navigator.pop(context);
+      _regnnoController.clear();
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomNavigationScreen()), (route) => false);
     }
   }
 }

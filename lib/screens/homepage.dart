@@ -11,28 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List announcementList = [];
-  bool isLoaded;
-
-  @override
-  void initState() {
-    super.initState();
-    isLoaded = false;
-    fetchDataList();
-  }
-
-  fetchDataList() async {
-    dynamic resultant = await DatabaseManager().getAnnouncementList();
-    if (resultant == null) {
-      print("Unable to retrieve");
-    } else {
-      setState(() {
-        isLoaded = true;
-        announcementList = resultant;
-        print(announcementList);
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

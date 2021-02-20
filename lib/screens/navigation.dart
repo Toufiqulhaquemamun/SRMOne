@@ -3,145 +3,149 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:college_app/services/databasemanger.dart';
 
+
+
 class NavigationScreen extends StatefulWidget {
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
+  final List<String> semesterList = ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5','Semester 6','Semester 7','Semester 8'];
+  final List<Color> colors = [
+    Color(0xffF19821),
+    Color(0xff99BACB),
+    Color(0xff498D7C),
+    Color(0xff4E97F2),
+    Color(0xffEFB958),
+    Color(0xffB196C4),
+    Color(0xffF49824),
+    Color(0xffF95F35),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.deepPurple,
+              expandedHeight: 20.0,
+              floating: false,
+              pinned: false,
+              flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text("Explore",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      )),
+                  background: Container(
+                  )),
+            ),
+          ];
+        },
+        body: Container(
+          color:Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding:
+                                EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+                                child: Icon(Icons.search),
+                              ),
+                              Text('Notes, Question Papers, PDFs',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          crossAxisCount: 2,
+                          childAspectRatio:
+                          (MediaQuery.of(context).size.width / (2 * 100)),
+                          children: List.generate(8, (index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: (){
+                                  print(index);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SubjectView(index+1)));
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width / 2,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        shape: BoxShape.rectangle,
+                                        color: colors[index]
+                                      // gradient: new LinearGradient(
+                                      //   colors: [
+                                      //     Colors.blueAccent,
+                                      //     Colors.red,
+                                      //   ],
+                                      //   begin: FractionalOffset.topLeft,
+                                      //   end: FractionalOffset.bottomRight,
+                                      // ),
+                                    ),
+                                    child: Padding(
+                                      padding:
+                                      const EdgeInsets.fromLTRB(16, 16, 0, 0),
+                                      child: Text(
+                                        semesterList[index],
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
+                              ),
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
-        Row( mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SubjectView(1)));
-                  },
-                  child: Container(
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        border: Border.all(color: Colors.black)),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Center(
-                      child: Text(
-                        'Semester 1',
-                        style: TextStyle(
-                          fontSize: 20.0
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SubjectView(1)));
-                  },
-                  child: Container(
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        border: Border.all(color: Colors.black)),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Center(
-                      child: Text(
-                        'Semester 1',
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SubjectView(1)));
-                  },
-                  child: Container(
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        border: Border.all(color: Colors.black)),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Center(
-                      child: Text(
-                        'Semester 1',
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Center(
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SubjectView(1)));
-                  },
-                  child: Container(
-                    height: 180.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        border: Border.all(color: Colors.black)),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Center(
-                      child: Text(
-                        'Semester 1',
-                        style: TextStyle(
-                            fontSize: 20.0
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ));
+      ),
+    );
   }
 }
 
