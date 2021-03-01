@@ -1,7 +1,6 @@
 import 'package:college_app/screens/welcomeuser.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:college_app/services/databasemanger.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
@@ -44,6 +43,11 @@ class AuthenticationService {
           builder: (context) =>
               WelcomeUser(user)),
     );
+  }
+
+  getCurrentUser(){
+    User user = _auth.currentUser;
+    return user;
   }
 
 // signout

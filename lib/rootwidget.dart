@@ -1,5 +1,4 @@
 import 'package:college_app/screens/bottomnavigation.dart';
-import 'package:college_app/screens/contribute.dart';
 import 'package:college_app/screens/signin.dart';
 import 'package:college_app/services/usermanager.dart';
 import 'package:flutter/material.dart';

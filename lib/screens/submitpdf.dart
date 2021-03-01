@@ -1,39 +1,47 @@
+import 'package:college_app/services/databasemanger.dart';
+import 'package:college_app/services/usermanager.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'dart:math';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 //This screen can be used to submit pdf notes
 
 class SubmitScreen extends StatefulWidget {
+  AuthenticationService authenticationService = AuthenticationService();
+  DatabaseManager databaseManager = DatabaseManager();
+
   @override
   _SubmitScreenState createState() => _SubmitScreenState();
 }
 
 class _SubmitScreenState extends State<SubmitScreen> {
-  Future<firebase_storage.UploadTask> uploadFile(File file) async {
+  User user;
+  String nameoffile;
+  String description;
+
+  final _formKey = GlobalKey<FormState>();
+
+  Future<firebase_storage.UploadTask> uploadFile(File file, String name, String des) async {
+    user = widget.authenticationService.getCurrentUser();
     if (file == null) {
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Unable to Upload")));
       return null;
     }
-    var rng = Random();
-    String randomName = " ";
-    for (var i = 0; i < 20; i++) {
-      print(rng.nextInt(100));
-      randomName += rng.nextInt(100).toString();
-    }
+   await widget.databaseManager.submitFileForReview(name, des, user.uid, user.displayName,user.email);
     firebase_storage.UploadTask uploadTask;
     // Create a Reference to the file
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref()
         .child('review')
-        .child('/$randomName.pdf');
+        .child('/$name.pdf');
 
     final metadata = firebase_storage.SettableMetadata(
         contentType: 'file/pdf',
         customMetadata: {'picked-file-path': file.path});
+
     print("Uploading..!");
 
     uploadTask = ref.putData(await file.readAsBytes(), metadata);
@@ -41,13 +49,6 @@ class _SubmitScreenState extends State<SubmitScreen> {
 
     print("done..!");
     return Future.value(uploadTask);
-  }
-
-   void _selectFile() async{
-    final path = await FlutterDocumentPicker.openDocument();
-    File file = File(path);
-    firebase_storage.UploadTask task = await uploadFile(file);
-    print("File uploaded!");
   }
 
   @override
@@ -74,7 +75,67 @@ class _SubmitScreenState extends State<SubmitScreen> {
                     Icons.add,
                     size: 50.0,
                   ),
-                  onPressed: _selectFile
+                  onPressed: () async {
+                    final path = await FlutterDocumentPicker.openDocument();
+                    File file = File(path);
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: Stack(
+                              overflow: Overflow.visible,
+                              children: <Widget>[
+                                Form(
+                                  key: _formKey,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          onChanged: (value){
+                                            nameoffile = value;
+                                          },
+                                          decoration: InputDecoration(
+                                            icon: Icon(Icons.attach_file),
+                                            labelText: 'Name of the File',
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          onChanged: (value){
+                                            description = value;
+                                          },
+                                          decoration: InputDecoration(
+                                            labelText: 'Unit and Subject',
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: RaisedButton(
+                                          child: Text("Submit"),
+                                          onPressed: () async {
+                                            firebase_storage.UploadTask task = await uploadFile(file, nameoffile, description);
+                                            if (_formKey.currentState.validate()) {
+                                              _formKey.currentState.save();
+                                            }
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        });
+
+                    print("File uploaded!");
+                  }
                 ),
               ),
             ),
@@ -87,16 +148,69 @@ class _SubmitScreenState extends State<SubmitScreen> {
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: _selectFile
+        onPressed:() async {
+          final path = await FlutterDocumentPicker.openDocument();
+          File file = File(path);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Stack(
+                    overflow: Overflow.visible,
+                    children: <Widget>[
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                onChanged: (value){
+                                  nameoffile = value;
+                                },
+                                decoration: InputDecoration(
+                                  icon: Icon(Icons.attach_file),
+                                  labelText: 'Name of the File',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                onChanged: (value){
+                                  description = value;
+                                },
+                                decoration: InputDecoration(
+                                  labelText: 'Unit and Subject',
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: RaisedButton(
+                                child: Text("Submit"),
+                                onPressed: () async {
+                                  firebase_storage.UploadTask task = await uploadFile(file, nameoffile, description);
+                                  if (_formKey.currentState.validate()) {
+                                    _formKey.currentState.save();
+                                  }
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              });
+
+          print("File uploaded!");
+        }
       ),
     );
-  }
-}
-
-class AddMoreInfo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 

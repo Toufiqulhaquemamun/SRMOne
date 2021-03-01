@@ -1,6 +1,5 @@
 import 'package:college_app/rootwidget.dart';
 import 'package:college_app/screens/homepage.dart';
-import 'package:college_app/screens/contribute.dart';
 import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/submitpdf.dart';
 import 'package:college_app/services/usermanager.dart';

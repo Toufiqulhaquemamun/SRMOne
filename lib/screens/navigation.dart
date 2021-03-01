@@ -1,6 +1,7 @@
-import 'package:college_app/screens/loadingscreen.dart';
+import 'package:college_app/screens/notes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:college_app/services/databasemanger.dart';
 
 
@@ -228,6 +229,7 @@ class UnitView extends StatefulWidget {
 }
 
 class _UnitViewState extends State<UnitView> {
+
   List subjectList = [];
   String unit;
 
@@ -263,12 +265,9 @@ class _UnitViewState extends State<UnitView> {
           itemCount: subjectList.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            LoadingScreen(subjectList[index]['url'])));
+              onTap: () async {
+                PDFDocument doc = await PDFDocument.fromURL(subjectList[index]['url']);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotesPage(doc)));
               },
               child: Card(
                 color:  Color(0xffB196C4),

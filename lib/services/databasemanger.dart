@@ -3,13 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DatabaseManager {
 
   final CollectionReference _userData =
-      FirebaseFirestore.instance.collection('user');
+      FirebaseFirestore.instance.collection('useruploads');
 
-  Future<void> createUserData(
-      String name, String email, String registrationno, String uid) async {
-    return await _userData
-        .doc(uid)
-        .set({'name': name, 'email': email, 'regnno': registrationno});
+  Future<void> submitFileForReview(
+      String name, String description, String uid, String nameofuser, String emailofuser) async {
+    return await _userData.doc()
+        .set({'name': name, 'description': description, 'uid': uid, 'nameofuser': nameofuser, 'emailofuser':emailofuser});
   }
 
   Future getAnnouncementList() async {
