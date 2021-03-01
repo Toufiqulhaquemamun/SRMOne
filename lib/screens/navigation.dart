@@ -184,27 +184,36 @@ class _SubjectViewState extends State<SubjectView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: ListView.builder(
-          itemCount: subjectList.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            UnitView(subjectList[index]['unit'])));
-              },
-              child: Card(
-                child: ListTile(
-                  title: Text(subjectList[index]['name']),
-                  // subtitle: Text(semesterList[index]['teacher']),
-                  // trailing: Text('${semesterList[index]['rating']}'),
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+          child: ListView.builder(
+            itemCount: subjectList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              UnitView(subjectList[index]['unit'])));
+                },
+                child: Card(
+                  color:  Color(0xffF49824) ,
+                  elevation:5,
+                  margin: EdgeInsets.all(4.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: ListTile(
+                    title: Text(subjectList[index]['name']),
+                    // subtitle: Text(semesterList[index]['teacher']),
+                    trailing: Icon(Icons.navigate_next, size: 30.0,),
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -249,6 +258,7 @@ class _UnitViewState extends State<UnitView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: ListView.builder(
           itemCount: subjectList.length,
           itemBuilder: (context, index) {
@@ -261,10 +271,16 @@ class _UnitViewState extends State<UnitView> {
                             LoadingScreen(subjectList[index]['url'])));
               },
               child: Card(
+                color:  Color(0xffB196C4),
+                elevation:5,
+                margin: EdgeInsets.all(4.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
                 child: ListTile(
                   title: Text(subjectList[index]['name']),
                   // subtitle: Text(semesterList[index]['teacher']),
-                  // trailing: Text('${semesterList[index]['rating']}'),
+                  trailing: Icon(Icons.open_in_new, size: 20.0,),
                 ),
               ),
             );

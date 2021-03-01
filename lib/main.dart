@@ -1,8 +1,3 @@
-import 'package:college_app/rootwidget.dart';
-import 'package:college_app/screens/bottomnavigation.dart';
-import 'package:college_app/screens/homepage.dart';
-import 'package:college_app/screens/loginpage.dart';
-import 'package:college_app/screens/registerationscreen.dart';
 import 'package:college_app/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

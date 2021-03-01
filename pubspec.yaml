@@ -30,12 +30,14 @@ dependencies:
   cupertino_icons: ^1.0.1
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.0+1
+  google_sign_in: ^4.5.3
   cloud_firestore: ^0.16.0
   firebase_storage: ^7.0.0
   url_launcher: ^5.4.5
   flutter_document_picker: ^4.0.0
   flutter_plugin_pdf_viewer: ^1.0.7
   persistent_bottom_nav_bar: ^3.1.0
+
   
 
 dev_dependencies:

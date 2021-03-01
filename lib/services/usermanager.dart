@@ -1,53 +1,55 @@
+import 'package:college_app/screens/welcomeuser.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:college_app/services/databasemanger.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
 
-// registration with email and password
-
-  Future createNewUser(String name, String email, String password, String regnno) async {
-    try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      User user = result.user;
-      await DatabaseManager().createUserData(name, email, regnno, user.uid);
-      return user;
-    } catch (e) {
-      print(e.toString());
-    }
+  Future<bool> checkIfUserIsSignedIn() async {
+    var userSignedIn = await _googleSignIn.isSignedIn();
+    return userSignedIn;
   }
 
-  Future<String> onStartUp() async {
-    String retVal = 'error';
-    try{
-      User _firebaseUser = await _auth.currentUser;
-      var _uid = _firebaseUser.uid;
-      var _email = _firebaseUser.email;
-      retVal = 'success';
+  Future<User> _handleSignIn() async {
+    User user;
+    bool userSignedIn = await _googleSignIn.isSignedIn();
+
+    if (userSignedIn) {
+      user = _auth.currentUser;
     }
-    catch(e){
+    else {
+      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      user = (await _auth.signInWithCredential(credential)).user;
+      userSignedIn = await _googleSignIn.isSignedIn();
     }
-    return retVal;
+
+    return user;
   }
 
-// sign with email and password
-
-  Future loginUser(String email, String password) async {
-    try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      return result.user;
-    } catch (e) {
-      print(e.toString());
-    }
+  void onGoogleSignIn(BuildContext context) async {
+    User user = await _handleSignIn();
+    var userSignedIn = await Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              WelcomeUser(user)),
+    );
   }
 
 // signout
   Future signOut() async {
     try {
-      return _auth.signOut();
+      return _googleSignIn.signOut();
     } catch (error) {
       print(error.toString());
       return null;

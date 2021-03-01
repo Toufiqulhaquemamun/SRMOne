@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "436045971199-nmhcbr700nm3s0edm8otjkombvu4chmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avstudios.college_app",
+            "certificate_hash": "0eb46f41730b22233e1cadc5bd2460945df21615"
+          }
+        },
+        {
           "client_id": "436045971199-hfepbqk0s55126akjbubjr87v52pog0a.apps.googleusercontent.com",
           "client_type": 3
         }

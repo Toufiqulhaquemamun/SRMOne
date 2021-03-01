@@ -1,6 +1,4 @@
-import 'package:college_app/screens/loginpage.dart';
-import 'package:college_app/screens/registerationscreen.dart';
-import 'package:college_app/screens/submitpdf.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -50,10 +48,7 @@ class _ContributeScreenState extends State<ContributeScreen> {
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Colors.white)),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegistrationScreen()));
+
                     }),
                 SizedBox(
                   height: 10.0,
@@ -70,10 +65,6 @@ class _ContributeScreenState extends State<ContributeScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginScreen()));
                       },
                       child: Text(
                         "Login",
