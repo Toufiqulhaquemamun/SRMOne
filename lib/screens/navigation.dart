@@ -22,6 +22,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
     Color(0xffB196C4),
     Color(0xffF49824),
     Color(0xffF95F35),
+    Color(0xFFCB1841),
+    Color(0xFF2604DE),
   ];
 
   @override

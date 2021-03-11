@@ -30,14 +30,24 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.deepPurple,
-        // padding: EdgeInsets.all(5.0),
-        // decoration: BoxDecoration(
-        //   image: DecorationImage(
-        //     image: AssetImage('assets/images/LogoReveal.GIF'),
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
+        padding: EdgeInsets.all(5.0),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFCB1841),
+              Color(0xFF2604DE)
+            ]
+          ),
+        ),
+        child: Center(
+          child: Text(
+            'SRM One',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 40.0
+            ),
+          ),
+        ),
       ),
     );
   }

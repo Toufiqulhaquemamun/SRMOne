@@ -35,8 +35,10 @@ dependencies:
   firebase_storage: ^7.0.0
   url_launcher: ^5.4.5
   flutter_document_picker: ^4.0.0
+  firebase_messaging:
   flutter_plugin_pdf_viewer: ^1.0.7
   persistent_bottom_nav_bar: ^3.1.0
+  http:
 
   
 

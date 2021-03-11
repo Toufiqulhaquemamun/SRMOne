@@ -3,6 +3,7 @@ import 'package:college_app/screens/homepage.dart';
 import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/submitpdf.dart';
 import 'package:college_app/services/usermanager.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -12,6 +13,8 @@ class BottomNavigationScreen extends StatefulWidget {
 }
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
+
+
   List<Map<String, Object>> _pages;
   int _selectedPageIndex = 0;
 
@@ -32,6 +35,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       },
     ];
     super.initState();
+
   }
 
   void _selectedPage(int index) {
@@ -59,13 +63,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'SRM Space',
+              'SRM One',
               style: TextStyle(color: Colors.black),
             ),
             Visibility(
               visible: true,
               child: Text(
-                'SRM University, Delhi NCR, Sonepat',
+                'Notes, PDFs and Books',
                 style: TextStyle(
                   fontSize: 10.0,
                   color: Colors.black,
@@ -75,15 +79,15 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ],
         ),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.notifications_none,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              //TODO: Setup Notifications
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.notifications_none,
+          //     color: Colors.black,
+          //   ),
+          //   onPressed: () {
+          //     //TODO: Setup Notifications
+          //   },
+          // ),
           IconButton(
             icon: Icon(
               Icons.exit_to_app,
