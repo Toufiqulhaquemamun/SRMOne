@@ -33,6 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
         padding: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               Color(0xFFCB1841),
               Color(0xFF2604DE)
@@ -43,6 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Text(
             'SRM One',
             style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w700,
               color: Colors.white,
               fontSize: 40.0
             ),

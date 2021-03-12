@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                           'Upcoming Events',
                           style: TextStyle(
                             fontSize: 20.0,
-                            // fontFamily: 'Montserrat',
+                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -58,8 +58,8 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          'See whats happening on Campus',
-                          style: TextStyle(
+                          'This app is still under development.',
+                          style: TextStyle(  fontFamily: 'Montserrat',
                             fontSize: 15.0,
                             // fontFamily: 'Montserrat',
                           ),
@@ -97,10 +97,10 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          'Upcoming Events',
+                          'GitHub Repository',
                           style: TextStyle(
                             fontSize: 20.0,
-                            // fontFamily: 'Montserrat',
+                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -108,10 +108,10 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Text(
-                          'See whats happening on Campus',
+                          'Check out latest issues and features!',
                           style: TextStyle(
                             fontSize: 15.0,
-                            // fontFamily: 'Montserrat',
+                            fontFamily: 'Montserrat',
                           ),
                         ),
                       ),
@@ -119,57 +119,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.90,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    gradient: LinearGradient(
-                        colors: [Colors.yellow, Colors.orange],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 12,
-                        offset: Offset(0, 6),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          'Upcoming Events',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            // fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Text(
-                          'See whats happening on Campus',
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            // fontFamily: 'Montserrat',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              /* Search Button */
             ],
           ),
         ),

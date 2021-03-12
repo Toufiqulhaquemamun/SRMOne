@@ -17,7 +17,7 @@ class _SignInState extends State<SignIn> {
             child: Align(
                 alignment: Alignment.center,
                 child: FlatButton(
-                  color: Colors.black,
+                  color: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
                             Text(
                                 // isUserSignedIn ? 'You\'re logged in with Google' :
                                 'Login with Google',
-                                style: TextStyle(color: Colors.white))
+                                style: TextStyle(color: Colors.white, fontFamily: 'Montserrat',fontWeight: FontWeight.bold))
                           ],
                         )
                     )

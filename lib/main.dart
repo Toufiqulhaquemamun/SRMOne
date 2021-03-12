@@ -28,7 +28,16 @@ class App extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             theme: ThemeData(
+              primaryColor: Color(0xFF2604DE),
+              accentColor:  Color(0xFFCB1841),
+              scaffoldBackgroundColor: Colors.white,
+              fontFamily: 'Montserrat',
 
+              textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: Colors.white,
+                displayColor: Colors.white,
+              ),
+              visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             title: 'College App',
             home: SplashScreen(),

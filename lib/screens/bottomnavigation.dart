@@ -64,7 +64,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           children: <Widget>[
             Text(
               'SRM One',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             Visibility(
               visible: true,
@@ -104,20 +104,29 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.deepPurple,
+        selectedItemColor:  Theme.of(context).primaryColor ,
         currentIndex: _selectedPageIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Home"),
+            title: Text("Home", style: TextStyle(
+              fontFamily: 'Montserrat',
+              fontWeight: FontWeight.bold
+            ),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
-            title: Text("Search"),
+            title: Text("Search", style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.bold
+            ),),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.edit),
-            title: Text("Contribute"),
+            title: Text("Contribute",style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontWeight: FontWeight.bold
+            ),),
           ),
         ],
       ),

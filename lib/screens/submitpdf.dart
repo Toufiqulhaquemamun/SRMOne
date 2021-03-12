@@ -140,10 +140,26 @@ class _SubmitScreenState extends State<SubmitScreen> {
               ),
             ),
           ),
+      SizedBox(height: 20.0,),
+      Text(
+        'Get started contributing!',
+        style: TextStyle(fontFamily: 'Montserrat',
+            color: Colors.black,
+          fontWeight: FontWeight.bold,
+          fontSize: 20.0
+        ),
+      ),
+          Text(
+            'Help us add notes to the app.',
+            style: TextStyle(fontFamily: 'Montserrat',
+              color: Colors.black,
+                fontSize: 15.0
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.purple,
+        backgroundColor:  Theme.of(context).primaryColor ,
         child: Icon(
           Icons.add,
           color: Colors.white,

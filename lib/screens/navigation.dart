@@ -33,7 +33,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: Theme.of(context).primaryColor,
               expandedHeight: 20.0,
               floating: false,
               pinned: false,
@@ -41,6 +41,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   centerTitle: true,
                   title: Text("Explore",
                       style: TextStyle(
+                        fontFamily: 'Montserrat',
                         color: Colors.white,
                         fontSize: 18.0,
                       )),
@@ -76,6 +77,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                               ),
                               Text('Notes, Question Papers, PDFs',
                                   style: TextStyle(
+                                      fontFamily: 'Montserrat',
                                       color: Colors.black,
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold))
@@ -130,6 +132,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                                       child: Text(
                                         semesterList[index],
                                         style: TextStyle(
+                                            fontFamily: 'Montserrat',
                                             color: Colors.white,
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold),
@@ -202,7 +205,7 @@ class _SubjectViewState extends State<SubjectView> {
                               UnitView(subjectList[index]['unit'])));
                 },
                 child: Card(
-                  color:  Color(0xffF49824) ,
+                  color:  Theme.of(context).primaryColor ,
                   elevation:5,
                   margin: EdgeInsets.all(4.0),
                   shape: RoundedRectangleBorder(
@@ -272,7 +275,7 @@ class _UnitViewState extends State<UnitView> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>NotesPage(doc)));
               },
               child: Card(
-                color:  Color(0xffB196C4),
+                color:  Theme.of(context).accentColor ,
                 elevation:5,
                 margin: EdgeInsets.all(4.0),
                 shape: RoundedRectangleBorder(
