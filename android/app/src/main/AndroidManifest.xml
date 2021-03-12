@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.avstudios.college_app">
    <application
-        android:label="college_app"
+        android:label="SRM One"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
