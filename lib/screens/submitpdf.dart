@@ -93,6 +93,10 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                       Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: TextFormField(
+                                          style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.black
+                                          ),
                                           onChanged: (value){
                                             nameoffile = value;
                                           },
@@ -105,6 +109,10 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                       Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: TextFormField(
+                                          style: TextStyle(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.black
+                                          ),
                                           onChanged: (value){
                                             description = value;
                                           },
@@ -123,6 +131,10 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                               _formKey.currentState.save();
                                             }
                                             Navigator.of(context).pop();
+                                            final snackBar = SnackBar(
+                                              content: Text('Your submission is under review. Thank you!'),
+                                            );
+                                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                           },
                                         ),
                                       )
@@ -165,6 +177,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
           color: Colors.white,
         ),
         onPressed:() async {
+
           final path = await FlutterDocumentPicker.openDocument();
           File file = File(path);
           showDialog(
@@ -182,10 +195,15 @@ class _SubmitScreenState extends State<SubmitScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: TextFormField(
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  color: Colors.black
+                                ),
                                 onChanged: (value){
                                   nameoffile = value;
                                 },
                                 decoration: InputDecoration(
+
                                   icon: Icon(Icons.attach_file),
                                   labelText: 'Name of the File',
                                 ),
@@ -194,6 +212,11 @@ class _SubmitScreenState extends State<SubmitScreen> {
                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: TextFormField(
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black
+                                ),
+
                                 onChanged: (value){
                                   description = value;
                                 },
@@ -212,6 +235,10 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                     _formKey.currentState.save();
                                   }
                                   Navigator.of(context).pop();
+                                  final snackBar = SnackBar(
+                                    content: Text('Your submission is under review. Thank you!'),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                 },
                               ),
                             )

@@ -3,7 +3,6 @@ import 'package:college_app/screens/homepage.dart';
 import 'package:college_app/screens/navigation.dart';
 import 'package:college_app/screens/submitpdf.dart';
 import 'package:college_app/services/usermanager.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationScreen extends StatefulWidget {

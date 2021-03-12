@@ -59,10 +59,16 @@ class _WelcomeUserState extends State<WelcomeUser> {
                           )
                       ),
                       SizedBox(height: 20),
-                      Text('Welcome,', textAlign: TextAlign.center),
+                      Text('Welcome,',style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
+                        fontFamily: 'Montserrat',
+                      ), textAlign: TextAlign.center),
                       Text(
                           widget._user.displayName, textAlign: TextAlign.center,
                           style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold, fontSize: 25)),
                       SizedBox(height: 20),
                       Center(child: CircularProgressIndicator())
