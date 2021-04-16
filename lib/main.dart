@@ -40,7 +40,7 @@ class App extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             title: 'College App',
-            home: BottomNavigationScreen(),
+            home: SplashScreen(),
             // initialRoute: '/login',
             // routes: {
             //   '/login': (context) => LoginScreen(),
