@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "436045971199-nmhcbr700nm3s0edm8otjkombvu4chmn.apps.googleusercontent.com",
+          "client_id": "436045971199-l7j95irspf4pao2omudq4q48ai9vb80a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.avstudios.college_app",
-            "certificate_hash": "0eb46f41730b22233e1cadc5bd2460945df21615"
+            "certificate_hash": "fed92b1140a638e7e406ec73430c4eb3cfa338f4"
+          }
+        },
+        {
+          "client_id": "436045971199-tn83f2in9git4i4t9si3nluoldne6tdh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avstudios.college_app",
+            "certificate_hash": "17a07cbdcddbc4c0f3041c2a9e44241a79405d58"
           }
         },
         {

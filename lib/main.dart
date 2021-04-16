@@ -1,3 +1,4 @@
+import 'package:college_app/screens/bottomnavigation.dart';
 import 'package:college_app/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,7 +40,7 @@ class App extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             title: 'College App',
-            home: SplashScreen(),
+            home: BottomNavigationScreen(),
             // initialRoute: '/login',
             // routes: {
             //   '/login': (context) => LoginScreen(),

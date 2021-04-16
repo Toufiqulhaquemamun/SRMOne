@@ -164,11 +164,13 @@ class SubjectView extends StatefulWidget {
 
 class _SubjectViewState extends State<SubjectView> {
   List subjectList = [];
+  bool isLoading = false;
   int sem;
 
   @override
   void initState() {
     super.initState();
+    isLoading = true;
     sem = widget.semValue;
     fetchDataList();
   }
@@ -181,6 +183,7 @@ class _SubjectViewState extends State<SubjectView> {
       print("Unable to retrieve");
     } else {
       setState(() {
+        isLoading = false;
         subjectList = resultant;
         print(subjectList);
       });
@@ -191,7 +194,7 @@ class _SubjectViewState extends State<SubjectView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: isLoading? Center(child: CircularProgressIndicator()): Container(
           padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
           child: ListView.builder(
             itemCount: subjectList.length,
@@ -236,10 +239,12 @@ class UnitView extends StatefulWidget {
 class _UnitViewState extends State<UnitView> {
 
   List subjectList = [];
+  bool isLoading = false;
   String unit;
 
   @override
   void initState() {
+    isLoading = true;
     super.initState();
     unit = widget.unitname;
     print(unit);
@@ -255,6 +260,7 @@ class _UnitViewState extends State<UnitView> {
       print("Unable to retrieve");
     } else {
       setState(() {
+        isLoading = false;
         subjectList = resultant;
         print(subjectList);
       });
@@ -264,15 +270,17 @@ class _UnitViewState extends State<UnitView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: isLoading? Center(child: CircularProgressIndicator()) :  Container(
         padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
         child: ListView.builder(
           itemCount: subjectList.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () async {
+                final snackBar = SnackBar(content: Text('Loading PDF...'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 PDFDocument doc = await PDFDocument.fromURL(subjectList[index]['url']);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>NotesPage(doc)));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> NotesPage(doc)));
               },
               child: Card(
                 color:  Theme.of(context).accentColor ,
