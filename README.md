@@ -43,3 +43,6 @@ If you are looking to help us exapand our database of Notes and PDFs, you can co
 Or, to help with bulk material and ease of access, please reach out to one of our team members and they’ll provide you with a Google Drive link to add all your files there.
 
 **Thank you for helping us in our endeavour.**  ❤️
+<br>
+<br>
+![Untitled-2021-08-15-1936](https://user-images.githubusercontent.com/53579386/129518990-d57bcce4-b740-4493-873f-8b66532cc263.png)
