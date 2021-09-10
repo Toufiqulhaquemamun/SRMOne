@@ -6,7 +6,7 @@ class DatabaseManager {
       FirebaseFirestore.instance.collection('useruploads');
 
   Future<void> submitFileForReview(
-      String name, String description, String uid, String nameofuser, String emailofuser) async {
+      String? name, String? description, String uid, String? nameofuser, String? emailofuser) async {
     return await _userData.doc()
         .set({'name': name, 'description': description, 'uid': uid, 'nameofuser': nameofuser, 'emailofuser':emailofuser});
   }
@@ -26,7 +26,7 @@ class DatabaseManager {
     }
   }
 
-  Future getSubjectList(int semvalue) async {
+  Future getSubjectList(int? semvalue) async {
     List itemList = [];
     try {
       await FirebaseFirestore.instance.collection('subjects').where("semvalue", isEqualTo: semvalue).get().then((QuerySnapshot querySnapshot) => {
@@ -41,7 +41,7 @@ class DatabaseManager {
     }
   }
 
-  Future getUnitList(String unit) async {
+  Future getUnitList(String? unit) async {
     List itemList = [];
     try {
       await FirebaseFirestore.instance.collection('units').where('unit', isEqualTo: unit).get().then((QuerySnapshot querySnapshot) => {

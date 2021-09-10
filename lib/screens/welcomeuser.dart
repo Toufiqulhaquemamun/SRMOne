@@ -5,9 +5,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeUser extends StatefulWidget {
-  User _user;
+  User? _user;
 
-  WelcomeUser(User user) {
+  WelcomeUser(User? user) {
     _user = user;
   }
 
@@ -52,7 +52,7 @@ class _WelcomeUserState extends State<WelcomeUser> {
                     children: <Widget>[
                       ClipOval(
                           child: Image.network(
-                              widget._user.photoURL,
+                              widget._user!.photoURL!,
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover
@@ -65,7 +65,7 @@ class _WelcomeUserState extends State<WelcomeUser> {
                         fontFamily: 'Montserrat',
                       ), textAlign: TextAlign.center),
                       Text(
-                          widget._user.displayName, textAlign: TextAlign.center,
+                          widget._user!.displayName!, textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Montserrat',

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:college_app/services/databasemanger.dart';
 import 'package:college_app/services/usermanager.dart';
 import 'package:flutter/material.dart';
@@ -17,20 +19,20 @@ class SubmitScreen extends StatefulWidget {
 }
 
 class _SubmitScreenState extends State<SubmitScreen> {
-  User user;
-  String nameoffile;
-  String description;
+  User? user;
+  String? nameoffile;
+  String? description;
 
   final _formKey = GlobalKey<FormState>();
 
-  Future<firebase_storage.UploadTask> uploadFile(File file, String name, String des) async {
+  Future<firebase_storage.UploadTask?> uploadFile(File file, String? name, String? des) async {
     user = widget.authenticationService.getCurrentUser();
     if (file == null) {
       Scaffold.of(context)
           .showSnackBar(SnackBar(content: Text("Unable to Upload")));
       return null;
     }
-   await widget.databaseManager.submitFileForReview(name, des, user.uid, user.displayName,user.email);
+   await widget.databaseManager.submitFileForReview(name, des, user!.uid, user!.displayName,user!.email);
     firebase_storage.UploadTask uploadTask;
     // Create a Reference to the file
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
@@ -76,7 +78,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
                     size: 50.0,
                   ),
                   onPressed: () async {
-                    final path = await FlutterDocumentPicker.openDocument();
+                    final path = await (FlutterDocumentPicker.openDocument() as FutureOr<String>);
                     File file = File(path);
                     showDialog(
                         context: context,
@@ -126,9 +128,9 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                         child: RaisedButton(
                                           child: Text("Submit"),
                                           onPressed: () async {
-                                            firebase_storage.UploadTask task = await uploadFile(file, nameoffile, description);
-                                            if (_formKey.currentState.validate()) {
-                                              _formKey.currentState.save();
+                                            firebase_storage.UploadTask? task = await uploadFile(file, nameoffile, description);
+                                            if (_formKey.currentState!.validate()) {
+                                              _formKey.currentState!.save();
                                             }
                                             Navigator.of(context).pop();
                                             final snackBar = SnackBar(
@@ -178,7 +180,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
         ),
         onPressed:() async {
 
-          final path = await FlutterDocumentPicker.openDocument();
+          final path = await (FlutterDocumentPicker.openDocument() as FutureOr<String>);
           File file = File(path);
           showDialog(
               context: context,
@@ -230,9 +232,9 @@ class _SubmitScreenState extends State<SubmitScreen> {
                               child: RaisedButton(
                                 child: Text("Submit"),
                                 onPressed: () async {
-                                  firebase_storage.UploadTask task = await uploadFile(file, nameoffile, description);
-                                  if (_formKey.currentState.validate()) {
-                                    _formKey.currentState.save();
+                                  firebase_storage.UploadTask? task = await uploadFile(file, nameoffile, description);
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
                                   }
                                   Navigator.of(context).pop();
                                   final snackBar = SnackBar(

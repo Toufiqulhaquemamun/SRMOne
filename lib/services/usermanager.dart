@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:college_app/screens/welcomeuser.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,15 +13,15 @@ class AuthenticationService {
     return userSignedIn;
   }
 
-  Future<User> _handleSignIn() async {
-    User user;
+  Future<User?> _handleSignIn() async {
+    User? user;
     bool userSignedIn = await _googleSignIn.isSignedIn();
 
     if (userSignedIn) {
       user = _auth.currentUser;
     }
     else {
-      final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      final GoogleSignInAccount googleUser = await (_googleSignIn.signIn() as FutureOr<GoogleSignInAccount>);
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
@@ -35,8 +36,8 @@ class AuthenticationService {
     return user;
   }
 
-  void onGoogleSignIn(BuildContext context) async {
-    User user = await _handleSignIn();
+  Future<void> onGoogleSignIn(BuildContext context) async {
+    User? user = await _handleSignIn();
     var userSignedIn = await Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -46,7 +47,7 @@ class AuthenticationService {
   }
 
   getCurrentUser(){
-    User user = _auth.currentUser;
+    User? user = _auth.currentUser;
     return user;
   }
 

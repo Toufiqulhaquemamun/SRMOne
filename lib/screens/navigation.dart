@@ -1,7 +1,6 @@
 import 'package:college_app/screens/notes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 import 'package:college_app/services/databasemanger.dart';
 
 
@@ -165,7 +164,7 @@ class SubjectView extends StatefulWidget {
 class _SubjectViewState extends State<SubjectView> {
   List subjectList = [];
   bool isLoading = false;
-  int sem;
+  int? sem;
 
   @override
   void initState() {
@@ -230,7 +229,7 @@ class _SubjectViewState extends State<SubjectView> {
 }
 
 class UnitView extends StatefulWidget {
-  String unitname;
+  String? unitname;
   UnitView(this.unitname);
   @override
   _UnitViewState createState() => _UnitViewState();
@@ -240,7 +239,7 @@ class _UnitViewState extends State<UnitView> {
 
   List subjectList = [];
   bool isLoading = false;
-  String unit;
+  String? unit;
 
   @override
   void initState() {
@@ -279,8 +278,8 @@ class _UnitViewState extends State<UnitView> {
               onTap: () async {
                 final snackBar = SnackBar(content: Text('Loading PDF...'));
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                PDFDocument doc = await PDFDocument.fromURL(subjectList[index]['url']);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> NotesPage(doc)));
+                // PDFDocument doc = await PDFDocument.fromURL(subjectList[index]['url']);
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=> NotesPage(doc)));
               },
               child: Card(
                 color:  Theme.of(context).accentColor ,

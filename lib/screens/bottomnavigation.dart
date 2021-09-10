@@ -14,7 +14,7 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
 
-  List<Map<String, Object>> _pages;
+  late List<Map<String, Object>> _pages;
   int _selectedPageIndex = 0;
 
   @override
@@ -99,7 +99,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           )
         ],
       ),
-      body: _pages[_selectedPageIndex]['page'],
+      body: _pages[_selectedPageIndex]['page'] as Widget?,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectedPage,
         unselectedItemColor: Colors.grey,
